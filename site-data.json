@@ -1,0 +1,80 @@
+{
+  "name": "Vitrine Noivas Brasil",
+  "description": "A maior e mais luxuosa vitrine de fornecedores de casamento do Brasil.",
+  "suppliers": [
+    {
+      "id": 1,
+      "name": "Studio Lumière",
+      "category": "Fotografia",
+      "location": "São Paulo, SP",
+      "rating": 4.9,
+      "reviews": 128,
+      "price": "$$$",
+      "image": "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&q=80&w=800",
+      "featured": true,
+      "portfolio": [
+        "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800",
+        "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800",
+        "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800",
+        "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&q=80&w=800",
+        "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800",
+        "https://images.unsplash.com/photo-1594553939348-c00268f4984c?auto=format&fit=crop&q=80&w=800"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Buffet Elegance",
+      "category": "Buffet",
+      "location": "Rio de Janeiro, RJ",
+      "rating": 4.8,
+      "reviews": 95,
+      "price": "$$$$",
+      "image": "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800",
+      "featured": false
+    },
+    {
+      "id": 3,
+      "name": "Atelier das Noivas",
+      "category": "Vestidos",
+      "location": "Curitiba, PR",
+      "rating": 5.0,
+      "reviews": 64,
+      "price": "$$$",
+      "image": "https://images.unsplash.com/photo-1594553939348-c00268f4984c?auto=format&fit=crop&q=80&w=800",
+      "featured": true
+    },
+    {
+      "id": 4,
+      "name": "Harmonia Musical",
+      "category": "Música",
+      "location": "Belo Horizonte, MG",
+      "rating": 4.7,
+      "reviews": 42,
+      "price": "$$",
+      "image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=800",
+      "featured": false
+    },
+    {
+      "id": 5,
+      "name": "Doce Encanto",
+      "category": "Bolos & Doces",
+      "location": "Porto Alegre, RS",
+      "rating": 4.9,
+      "reviews": 87,
+      "price": "$$",
+      "image": "https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&q=80&w=800",
+      "featured": false
+    },
+    {
+      "id": 6,
+      "name": "Requinte Decorações",
+      "category": "Decoração",
+      "location": "Brasília, DF",
+      "rating": 4.8,
+      "reviews": 112,
+      "price": "$$$$",
+      "image": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800",
+      "featured": true
+    }
+  ]
+}

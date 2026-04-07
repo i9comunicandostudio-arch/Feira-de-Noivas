@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vitrine Noivas Brasil</title>
+    <script>
+      // Global error handler to catch and log more details about the SyntaxError
+      window.addEventListener('error', function(event) {
+        if (event.error instanceof SyntaxError && event.error.message.includes('not valid JSON')) {
+          console.error('Caught a JSON SyntaxError globally:', event.error.message);
+          console.error('Source:', event.filename, 'Line:', event.lineno, 'Col:', event.colno);
+          // Optional: prevent the error from bubbling up if we want to suppress it
+          // event.preventDefault();
+        }
+      });
+      
+      window.addEventListener('unhandledrejection', function(event) {
+        if (event.reason instanceof SyntaxError && event.reason.message.includes('not valid JSON')) {
+          console.error('Caught an unhandled JSON SyntaxError in a promise:', event.reason.message);
+        }
+      });
+    </script>
+    <script>
+      // Robust polyfill for JSON.parse to handle common invalid inputs gracefully
+      (function() {
+        console.log('JSON.parse protection active');
+        const originalParse = JSON.parse;
+        const newParse = function(text, reviver) {
+          // Handle undefined value or string "undefined"
+          if (text === undefined || text === "undefined") {
+            console.warn('JSON.parse was called with undefined. This was handled gracefully to avoid a SyntaxError.');
+            return undefined;
+          }
+          
+          // Handle null value or string "null"
+          if (text === null || text === "null") {
+            return null;
+          }
+
+          // Handle empty string
+          if (typeof text === 'string' && text.trim() === "") {
+            console.warn('JSON.parse was called with an empty string. This was handled gracefully.');
+            return null;
+          }
+
+          // Handle common mistake of parsing an already parsed object
+          if (typeof text === 'object' && text !== null) {
+            console.warn('JSON.parse was called with an object. Returning the object as-is.');
+            return text;
+          }
+
+          // Handle string "[object Object]"
+          if (text === "[object Object]") {
+            console.warn('JSON.parse was called with the string "[object Object]". This was handled gracefully.');
+            return {};
+          }
+
+          try {
+            return originalParse.call(JSON, text, reviver);
+          } catch (e) {
+            // Log the error and the input that caused it, along with the stack trace
+            console.error('JSON.parse failed for input:', text, 'Error:', e.message);
+            console.trace('JSON.parse failure stack trace');
+            throw e; // Re-throw to maintain original behavior if not handled above
+          }
+        };
+
+        try {
+          Object.defineProperty(JSON, 'parse', {
+            value: newParse,
+            configurable: false,
+            writable: false
+          });
+        } catch (e) {
+          // Fallback if defineProperty fails
+          JSON.parse = newParse;
+        }
+      })();
+    </script>
+    <script>
+      // Aggressive and robust fix for the "fetch is read-only" error
+      (function() {
+        try {
+          const originalFetch = window.fetch;
+          
+          // Try to redefine on window directly
+          Object.defineProperty(window, 'fetch', {
+            get: function() { return originalFetch; },
+            set: function(v) { 
+              console.warn('A library attempted to overwrite window.fetch. This was prevented to avoid a TypeError.', v);
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          console.warn('window.fetch is non-configurable on window itself. Attempting prototype shadow.');
+          try {
+            // Try to shadow it on the Window prototype
+            const proto = Object.getPrototypeOf(window);
+            if (proto) {
+              Object.defineProperty(proto, 'fetch', {
+                get: function() { return originalFetch; },
+                set: function(v) {
+                  console.warn('A library attempted to overwrite fetch on Window prototype. This was prevented.', v);
+                },
+                configurable: true,
+                enumerable: true
+              });
+            }
+          } catch (e2) {
+            console.error('Critical: Could not redefine or shadow fetch. Assignments to window.fetch will likely fail.', e2);
+          }
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

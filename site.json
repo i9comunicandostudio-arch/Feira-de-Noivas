@@ -1,0 +1,69 @@
+{
+  "site": {
+    "name": "Vitrine Noivas Brasil",
+    "description": "A luxury wedding marketplace and directory connecting couples with premium wedding suppliers.",
+    "language": "pt-BR",
+    "theme": {
+      "primaryColor": "#D4AF37",
+      "secondaryColor": "#000000",
+      "fontFamily": "Serif / Sans-serif"
+    }
+  },
+  "content": {
+    "categories": [
+      { "id": "fotografia", "name": "Fotografia", "count": 1240 },
+      { "id": "buffet", "name": "Buffet", "count": 850 },
+      { "id": "vestidos", "name": "Vestidos", "count": 620 },
+      { "id": "musica", "name": "Música", "count": 430 },
+      { "id": "bolos", "name": "Bolos", "count": 310 },
+      { "id": "decoracao", "name": "Decoração", "count": 980 }
+    ],
+    "plans": [
+      {
+        "name": "Básico",
+        "price": "Grátis",
+        "description": "Para quem está começando a divulgar seus serviços.",
+        "features": ["Perfil básico", "Até 5 fotos no portfólio", "Receba mensagens diretas", "Listagem em 1 categoria"]
+      },
+      {
+        "name": "Premium",
+        "price": "R$ 149,90",
+        "period": "mês",
+        "description": "Aumente sua visibilidade e conquiste mais noivas.",
+        "features": ["Destaque nas buscas", "Fotos ilimitadas", "Vídeos no perfil", "Link para redes sociais", "Relatórios mensais", "Listagem em 3 categorias"]
+      },
+      {
+        "name": "Elite",
+        "price": "R$ 299,90",
+        "period": "mês",
+        "description": "Para os melhores fornecedores do mercado de luxo.",
+        "features": ["Topo das buscas", "Selo de Verificação Elite", "Suporte prioritário", "Consultoria de marketing", "Destaque no blog e redes sociais", "Categorias ilimitadas"]
+      }
+    ]
+  },
+  "data_structure": {
+    "entities": {
+      "User": {
+        "title": "User",
+        "description": "Exhibitor user profile",
+        "properties": {
+          "uid": "string",
+          "email": "string (email)",
+          "displayName": "string",
+          "photoURL": "string",
+          "role": ["exhibitor", "admin"]
+        }
+      }
+    },
+    "collections": {
+      "/users/{uid}": "User profile document"
+    }
+  },
+  "pages": [
+    { "path": "/", "name": "Landing Page", "description": "Home page with categories and plans" },
+    { "path": "/search", "name": "Search Page", "description": "Search for suppliers by category and location" },
+    { "path": "/supplier/:id", "name": "Supplier Profile", "description": "Detailed profile of a wedding supplier" },
+    { "path": "/login", "name": "Login", "description": "Authentication page for exhibitors" },
+    { "path": "/dashboard", "name": "Dashboard", "description": "Management panel for exhibitors" }
+  ]
+}
